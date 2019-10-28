@@ -1,18 +1,23 @@
-'use strict';
+const http = require('http');
 
-let http = require('http');
+const hostname = '127.0.0.1';
+const port = 9000;
 
-// define app constants
-const PORT = 9000;
-
-// create a server with a responder function
-let server = http.createServer(function respondToRequests(request, response){
-        // respond to all requests in this function
-    console.log('Received a', request.method, 'request for the url:', request.url);
-    response.end('Hello from the other siiiiiiide!');
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  if(req.url === '/') {
+    console.log('Request:', req.url);
+    res.end('Hello, Émile!\n');
+  } else if(req.url === '/potato') {
+    console.log('Request:', req.url);
+    res.end('Hello, Prince Edward Island');
+  } else {
+    res.statusCode = 404;
+    res.end('Not found');
+  }
 });
 
-// start the server
-server.listen(PORT, function onServerStart(){
-    console.log("Server listening on: http://localhost:%s", PORT);
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });

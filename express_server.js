@@ -1,32 +1,49 @@
 const express = require('express');
-const moment = require('moment');
+const morgan = require('morgan');
 
 const app = express();
 
-app.set('view engine', 'ejs')
-
-const logUA = (req, res, next) => {
-  console.log(req.get('User-Agent'));
+const log = (req, res, next) => {
+  console.log('Request:', req.path);
   next();
 }
 
-app.use(express.static('public'));
+const authenticate = (req, res, next) => {
+  // check the cookies
+  if(true /* some sooper dooper secure check */) {
+    req.user = {}
+    next();
+  } else {
+    res.status(401);
+    res.send('Not authorized!');
+  }
+}
 
-// app.use(logUA);
+// app.use(log);
+app.set('views', 'templates');
+app.set('view engine', 'ejs');
+
+app.use(morgan('tiny'));
+app.use(express.static('public'));
+app.use(authenticate);
+
 
 app.get('/', (req, res) => {
-  res.render('home', {
-    formattedDate: moment().format('LLL')
-  });
+  res.send('Hello');
+});
+
+app.get('/name/:name', (req, res) => {
+  res.render('home', {name: req.params.name, number: 10});
 });
 
 app.get('/potato', (req, res) => {
-  res.render('potato');
+  res.send('Hello, PEI');
 });
 
-app.get('/:name', (req, res) => {
-  console.log(req.query);
-  res.send(`Hello, ${req.params.name}`);
-})
+const protected = (req, res) => {
+  res.send('super secret stuff');
+}
 
-app.listen(9000);
+app.get('/protected', authenticate, protected);
+
+app.listen(9000, () => console.log('server listening on http://localhost:9000/'));
