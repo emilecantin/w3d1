@@ -47,9 +47,9 @@ We use res.render to "render" EJS templates.
 
 Ultimately, render allows:
 
-Express sends ------- data ------ EJS ---> EJS Template (eg: creatures.ejs)
-Express gets <--- HTML string --- EJS
-Express now has the HTML string to send back using res.send
+- Express sends ------- data ------ EJS ---> EJS Template (eg: creatures.ejs)
+- Express gets <--- HTML string --- EJS
+- Express now has the HTML string to send back using res.send
 
 
 Happy hacking!
