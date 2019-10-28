@@ -27,14 +27,14 @@ Problems:
 ## Express Server
 One way to solve some of those problems.
 
-We created a simple one. See express_server.js
+We created a simple one. See `express_server.js`
 
 ### Middleware
 Note: Fully understanding the middleware-based architecture of Express is not a primary goal for this week. That said, it's a common paradigm and getting comfortable with it will make it easier to work with Express and other solutions like it.
 
 Express is actually implemented using a Middleware pattern, as they say on their website:
 
-  An Express application is essentially a series of middleware function calls.
+    An Express application is essentially a series of middleware function calls.
 
 Problem: It would be nice to be able to add a callback for ALL routes (or a subset of routes) to do things like logging, serving static (css, js, img, etc) files, etc.
 
