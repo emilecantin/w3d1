@@ -36,14 +36,14 @@ Express is actually implemented using a Middleware pattern, as they say on their
 
     An Express application is essentially a series of middleware function calls.
 
-Problem: It would be nice to be able to add a callback for ALL routes (or a subset of routes) to do things like logging, serving static (css, js, img, etc) files, etc.
+*Problem*: It would be nice to be able to add a callback for ALL routes (or a subset of routes) to do things like logging, serving static (css, js, img, etc) files, etc.
 
-Solution: Middleware! Each request actually makes its way through a series of callback functions, instead of just a single one. This allows us to add the same behavior to multiple routes.
+*Solution*: Middleware! Each request actually makes its way through a series of callback functions, instead of just a single one. This allows us to add the same behavior to multiple routes.
 
 ### Templates
-EJS Instead of creating strings upon strings of HTML in our JS file, EJS allows us to not only move that code into separate files, it also allows us to make them HTML files which have JS inside (so it's inverted).
+Instead of creating strings upon strings of HTML in our JS file, EJS allows us to not only move that code into separate files, it also allows us to make them HTML files which have JS inside (so it's inverted).
 
-We use res.render to "render" EJS templates.
+We use `res.render` to "render" EJS templates.
 
 Ultimately, render allows:
 
